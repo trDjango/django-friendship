@@ -12,16 +12,17 @@ from django.shortcuts import render, get_object_or_404, redirect
 from friendship.exceptions import AlreadyExistsError
 from friendship.models import Friend, Follow, FriendshipRequest
 
+
 get_friendship_context_object_name = lambda: getattr(settings, 'FRIENDSHIP_CONTEXT_OBJECT_NAME', 'user')
 get_friendship_context_object_list_name = lambda: getattr(settings, 'FRIENDSHIP_CONTEXT_OBJECT_LIST_NAME', 'users')
 
 
+@login_required
 def view_friends(request, username, template_name='friendship/friend/user_list.html'):
     """ View the friends of a user """
     user = get_object_or_404(user_model, username=username)
     friends = Friend.objects.friends(user)
     return render(request, template_name, {get_friendship_context_object_name(): user, 'friends': friends})
-
 
 
 @login_required
@@ -101,6 +102,7 @@ def friendship_requests_detail(request, friendship_request_id, template_name='fr
     return render(request, template_name, {'friendship_request': f_request})
 
 
+@login_required
 def followers(request, username, template_name='friendship/follow/followers_list.html'):
     """ List this user's followers """
     user = get_object_or_404(user_model, username=username)
@@ -109,6 +111,7 @@ def followers(request, username, template_name='friendship/follow/followers_list
     return render(request, template_name, {get_friendship_context_object_name(): user, 'followers': followers})
 
 
+@login_required
 def following(request, username, template_name='friendship/follow/following_list.html'):
     """ List who this user follows """
     user = get_object_or_404(user_model, username=username)
@@ -147,6 +150,7 @@ def follower_remove(request, followee_username, template_name='friendship/follow
     return render(request, template_name, {'followee_username': followee_username})
 
 
+@login_required
 def all_users(request, template_name="friendship/user_actions.html"):
     users = user_model.objects.all()
 
