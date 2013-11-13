@@ -1,3 +1,0 @@
-coverage==3.5
-django-coverage==1.2.2
-wsgiref==0.1.2
