@@ -27,6 +27,8 @@ Installation
 3. Use the friendship manager in your own views, or wire up the URLconf to include the builtin views: :
 
    .. code:: python
+   
+   from django.urls import path, include, re_path
 
     urlpatterns = [
         ...
