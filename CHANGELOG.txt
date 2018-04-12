@@ -1,3 +1,11 @@
+Version 1.4.1
+-------------
+
+  Released April 12rd, 2018
+  
+    - url updated for django 2.0.4
+    - Added foreign_key model field on_delete = models.CASCADE attribute
+
 Version 1.4.0
 -------------
 
