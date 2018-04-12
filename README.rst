@@ -30,7 +30,7 @@ Installation
 
     urlpatterns = [
         ...
-        url(r'^friendship/', include('friendship.urls'))
+        re_path(r'^friendship/', include('friendship.urls'))
         ...
     ]
 
